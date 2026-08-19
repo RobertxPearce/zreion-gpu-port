@@ -1,3 +1,6 @@
+# kSZ 2LPT Repository
+zreion/ksz_2lpt
+
 # OS
 *~
 .DS_Store
@@ -55,7 +58,6 @@ logs/
 
 # Simulation Outputs / Large Data
 outputs/
-results/
 data/
 *.h5
 *.hdf5
