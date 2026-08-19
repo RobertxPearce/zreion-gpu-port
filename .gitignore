@@ -1,6 +1,9 @@
 # kSZ 2LPT Repository
 zreion/ksz_2lpt
 
+# Simulation files
+planck_2018_transfer_z000.dat
+
 # OS
 *~
 .DS_Store
