@@ -1,5 +1,6 @@
 # kSZ 2LPT Repository
 zreion/ksz_2lpt
+zreion/ksz_2lpt_cpu
 
 # Simulation files
 planck_2018_transfer_z000.dat
@@ -67,6 +68,9 @@ data/
 *.npy
 *.npz
 
+# Results
+!results/**/run.log
+
 # Python
 __pycache__/
 *.py[cod]
@@ -87,3 +91,7 @@ ENV/
 !.vscode/*.code-snippets
 !*.code-workspace
 *.vsix
+
+# PyCharm / JetBrains
+.idea/
+*.iml
