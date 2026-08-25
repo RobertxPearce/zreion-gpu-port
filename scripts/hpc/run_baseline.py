@@ -19,8 +19,8 @@ OUT = Path("~/ocean/baseline/zreion_cpu_baseline").expanduser()
 # Parameters: zmean, alpha, kb, b0 (centroid of the LHS sampling bounds)
 PARAMS = (8.0, 0.5, 1.05, 0.45)
 
-# Identical runs, for reproducibility and run to run timing spread
-REPEATS = 3
+# Identical runs, for reproducibility and run to run timing spread.
+REPEATS = 10
 
 
 def sh(cmd):
