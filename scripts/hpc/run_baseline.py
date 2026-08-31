@@ -7,9 +7,11 @@
 #                              quota/project, and selected environment details
 #   OUT/results.json         : Executable path, parameter values, OMP thread
 #                              setting, start/end timestamps, elapsed wall time,
-#                              return code, and output directory for each repeat
+#                              GNU time metrics, return code, and output
+#                              directory for each repeat
 #   OUT/run_<n>/stdout.txt   : Standard output from ksz_2lpt.x
-#   OUT/run_<n>/stderr.log   : Standard error from ksz_2lpt.x
+#   OUT/run_<n>/time.txt     : Standard error from ksz_2lpt.x plus
+#                              /usr/bin/time -v performance metrics
 #   OUT/run_<n>/out/         : HDF5 products written by ksz_2lpt.x
 #
 # Robert Pearce
@@ -38,6 +40,49 @@ PARAMS = {
 
 # Number of times to run the simulation
 REPEATS = 10
+
+
+def parse_time_report(path):
+    metrics = {
+        "user_seconds": None,
+        "system_seconds": None,
+        "cpu_percent": None,
+        "time_wall_clock": None,
+        "peak_rss_gb": None,
+        "major_page_faults": None,
+        "minor_page_faults": None,
+        "voluntary_context_switches": None,
+        "involuntary_context_switches": None,
+        "file_system_inputs": None,
+        "file_system_outputs": None,
+    }
+
+    for line in path.read_text(errors="replace").splitlines():
+        if "User time (seconds):" in line:
+            metrics["user_seconds"] = float(line.split(":", 1)[1])
+        elif "System time (seconds):" in line:
+            metrics["system_seconds"] = float(line.split(":", 1)[1])
+        elif "Percent of CPU this job got:" in line:
+            metrics["cpu_percent"] = float(line.split(":", 1)[1].strip().rstrip("%"))
+        elif "Elapsed (wall clock) time" in line:
+            metrics["time_wall_clock"] = line.split("):", 1)[1].strip()
+        elif "Maximum resident set size" in line:
+            kb = int(line.split(":", 1)[1])
+            metrics["peak_rss_gb"] = round(kb / 1024**2, 2)
+        elif "Major (requiring I/O) page faults:" in line:
+            metrics["major_page_faults"] = int(line.split(":", 1)[1])
+        elif "Minor (reclaiming a frame) page faults:" in line:
+            metrics["minor_page_faults"] = int(line.split(":", 1)[1])
+        elif "Voluntary context switches:" in line:
+            metrics["voluntary_context_switches"] = int(line.split(":", 1)[1])
+        elif "Involuntary context switches:" in line:
+            metrics["involuntary_context_switches"] = int(line.split(":", 1)[1])
+        elif "File system inputs:" in line:
+            metrics["file_system_inputs"] = int(line.split(":", 1)[1])
+        elif "File system outputs:" in line:
+            metrics["file_system_outputs"] = int(line.split(":", 1)[1])
+
+    return metrics
 
 
 def run_command_text(args):
@@ -138,16 +183,19 @@ def run_case(i):
         str(PARAMS["kb_zre"]),
         str(PARAMS["b0_zre"]),
     ]
+    timed_args = ["/usr/bin/time", "-v"] + args
+    time_report = case / "time.txt"
     
     # Start the timer for elapsed time
     started_at = time.strftime("%Y-%m-%dT%H:%M:%S")
     t0 = time.perf_counter()
     
-    with (case / "stdout.txt").open("w") as stdout, (case / "stderr.log").open("w") as stderr:
-        result_out = sp.run(args, stdout=stdout, stderr=stderr)
+    with (case / "stdout.txt").open("w") as stdout, time_report.open("w") as stderr:
+        result_out = sp.run(timed_args, stdout=stdout, stderr=stderr)
         
     wall_seconds = round(time.perf_counter() - t0, 2)
     ended_at = time.strftime("%Y-%m-%dT%H:%M:%S")
+    time_metrics = parse_time_report(time_report)
     
     return {
         "run": i,
@@ -156,6 +204,7 @@ def run_case(i):
         "started_at": started_at,
         "ended_at": ended_at,
         "output_dir": str(outdir),
+        **time_metrics,
     }
 
 
