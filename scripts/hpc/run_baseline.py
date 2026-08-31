@@ -1,182 +1,190 @@
 # -----------------------------------------------------------------------------
-# CPU Baseline Runs of the zreion (ksz_2lpt) Simulation
+# Run repeated CPU baseline simulations with the original zreion/ksz_2lpt code
+# on Bridges-2 and write timing, output locations, and run-environment metadata.
+#
+# Write:
+#   OUT/provenance.txt       : Host, CPU, memory, OS, compiler, module, library,
+#                              quota/project, and selected environment details
+#   OUT/results.json         : Executable path, parameter values, OMP thread
+#                              setting, start/end timestamps, elapsed wall time,
+#                              return code, and output directory for each repeat
+#   OUT/run_<n>/stdout.txt   : Standard output from ksz_2lpt.x
+#   OUT/run_<n>/stderr.log   : Standard error from ksz_2lpt.x
+#   OUT/run_<n>/out/         : HDF5 products written by ksz_2lpt.x
+#
 # Robert Pearce
 # -----------------------------------------------------------------------------
 
-import hashlib
+from pathlib import Path
 import json
-import os
 import platform
 import subprocess as sp
-import sys
 import time
-from pathlib import Path
+import os
 
-# Path to simulation executable and output directory
+RUN_VERSION = "v2"
+
+# Paths on the Bridges-2 supercomputer
 EXEC = Path("/jet/home/rpearce/software/ksz_2lpt/ksz_2lpt.x")
-OUT = Path("~/ocean/baseline/zreion_cpu_baseline").expanduser()
+OUT = Path(f"~/ocean/baseline/zreion_cpu_baseline_{RUN_VERSION}").expanduser()
 
-# Parameters: zmean, alpha, kb, b0 (centroid of the LHS sampling bounds)
-PARAMS = (8.0, 0.5, 1.05, 0.45)
+# zreion Parameter values set at the midpoint of the bounds from reionemu
+PARAMS = {
+    "zmean_zre": 8.0,
+    "alpha_zre": 0.5,
+    "kb_zre": 1.05,
+    "b0_zre": 0.45,
+}
 
-# Identical runs, for reproducibility and run to run timing spread.
+# Number of times to run the simulation
 REPEATS = 10
 
 
-def sh(cmd):
+def run_command_text(args):
     """
-    Run a shell command and return its combined stdout and stderr
-    cmd: Command string to run
+    Helper function to run a command and return the output as a string
+    :param args: Command line argument
+    :return: String containing stdout and stderr
     """
     try:
-        p = sp.run(cmd, shell=True, capture_output=True, text=True, timeout=60)
-        return p.stdout + p.stderr
+        result = sp.run(args, capture_output=True, text=True, timeout=60)
+        return result.stdout + result.stderr
     except Exception as exc:
-        return f"<failed: {exc}>\n"
+        return f"Error: {exc}\n"
 
 
-def gnu_time():
-    """Return the time -v prefix if GNU time is present, else an empty string"""
-    if "Maximum resident set size" in sh("/usr/bin/time -v true"):
-        return "/usr/bin/time -v "
-    print("warning: GNU time -v unavailable, peak memory will not be recorded")
-    return ""
-
-
-def sha256(path):
+def run_shell_text(command):
     """
-    Return the SHA-256 of a file, read in 1 MB chunks
-    path: Path to the file to hash
+    Helper function to run a shell command and return the output as a string
+    :param command: Command line argument
+    :return: String containing stdout and stderr
     """
-    h = hashlib.sha256()
-    with path.open("rb") as fh:
-        for chunk in iter(lambda: fh.read(1 << 20), b""):
-            h.update(chunk)
-    return h.hexdigest()
-
-
-def capture_provenance(dest):
-    """
-    Write machine, module, and compiler details to a file
-    dest: Path of the file to write
-    """
-    cmds = {
-        "lscpu": "lscpu",
-        "memory": "head -5 /proc/meminfo",
-        "os": "uname -a; cat /etc/os-release",
-        "modules": "module list 2>&1",
-        "ifort": "which ifort && ifort --version",
-        "linked_libs": f"ldd {EXEC}",
-        "quota": "my_quotas 2>&1 || projects 2>&1",
-    }
-    with dest.open("w") as fh:
-        for name, cmd in cmds.items():
-            fh.write(f"### {name}\n{sh(cmd)}\n")
-
-
-def run_case(tag, root):
-    """
-    Run the simulation once and record timing, memory, and output checksums
-    tag: Name of this run; results are written to root/tag
-    root: Path to the base output directory
-    """
-    # Make a new folder for this run
-    case = root / tag
-    outdir = case / "out"
-    outdir.mkdir(parents=True, exist_ok=True)
-
-    # ksz_2lpt expects: dir_out zmean_zre alpha_zre kb_zre b0_zre
-    args = " ".join(str(v) for v in PARAMS)
-    cmd = f"{gnu_time()}{EXEC} {outdir}/ {args}"
-
-    # Run the executable, keeping stdout and the time -v report separate
-    print(f"\n=== {tag}")
-    t0 = time.perf_counter()
-    with (case / "run.log").open("w") as out, (case / "time.txt").open("w") as err:
-        rc = sp.run(cmd, shell=True, stdout=out, stderr=err).returncode
-    wall = round(time.perf_counter() - t0, 2)
-
-    # Pull peak memory out of the time -v report
-    rss = None
-    for line in (case / "time.txt").read_text(errors="replace").splitlines():
-        if "Maximum resident set size" in line:
-            rss = round(int(line.split(":")[1]) / 1024**2, 2)
-
-    # Hash the outputs so a GPU run can be compared against them later
-    products = {p.name: sha256(p) for p in sorted(outdir.glob("*.hdf5"))}
-    print(f"  rc={rc} wall={wall}s peak_rss={rss}GB outputs={len(products)}")
-
-    return {
-        "tag": tag,
-        "omp_threads_env": os.environ.get("OMP_NUM_THREADS", "unset"),
-        "returncode": rc,
-        "wall_seconds": wall,
-        "peak_rss_gb": rss,
-        "products": products,
-    }
-
-
-def write_results(root, results):
-    """
-    Write the run records to JSON and a summary table
-    root: Path to the base output directory
-    results: List of run record dicts
-    """
-    (root / "results.json").write_text(
-        json.dumps(
-            {
-                "host": platform.node(),
-                "binary": str(EXEC),
-                "binary_sha256": sha256(EXEC),
-                "params": PARAMS,
-                "cases": results,
-            },
-            indent=2,
+    try:
+        result = sp.run(
+            ["bash", "-lc", command],
+            capture_output=True,
+            text=True,
+            timeout=60,
         )
-    )
-    with (root / "summary.csv").open("w") as fh:
-        fh.write("tag,omp_threads_env,rc,wall_seconds,peak_rss_gb\n")
-        for r in results:
-            fh.write(
-                f"{r['tag']},{r['omp_threads_env']},{r['returncode']},"
-                f"{r['wall_seconds']},{r['peak_rss_gb']}\n"
-            )
+        return result.stdout + result.stderr
+    except Exception as exc:
+        return f"Error: {exc}\n"
 
 
-def main() -> int:
-    # Check the executable exists
+def write_provenance():
+    commands = {
+        "host": ["hostname"],
+        "cpu": ["lscpu"],
+        "memory": ["head", "-5", "/proc/meminfo"],
+        "os": ["uname", "-a"],
+        "os_release": ["cat", "/etc/os-release"],
+        "linked_libraries": ["ldd", str(EXEC)],
+    }
+    shell_commands = {
+        "loaded_modules": "module list 2>&1",
+        "compiler": "which ifort && ifort --version",
+        "quota_or_projects": "my_quotas 2>&1 || projects 2>&1",
+    }
+    env_vars = [
+        "OMP_NUM_THREADS",
+        "OMP_SCHEDULE",
+        "MKL_NUM_THREADS",
+        "KMP_LIBRARY",
+        "KMP_SCHEDULE",
+        "KMP_STACKSIZE",
+        "SLURM_JOB_ID",
+        "SLURM_JOB_NAME",
+        "SLURM_NTASKS",
+        "SLURM_NTASKS_PER_NODE",
+        "SLURM_CPUS_PER_TASK",
+        "SLURM_JOB_NODELIST",
+    ]
+
+    with (OUT / "provenance.txt").open("w") as file:
+        for name, args in commands.items():
+            file.write(f"### {name}\n")
+            file.write(run_command_text(args))
+            file.write("\n")
+        for name, command in shell_commands.items():
+            file.write(f"### {name}\n")
+            file.write(run_shell_text(command))
+            file.write("\n")
+        file.write("### environment\n")
+        for name in env_vars:
+            file.write(f"{name}={os.environ.get(name, 'unset')}\n")
+        file.write("\n")
+
+
+def run_case(i):
+    """
+    Function to run one simulation
+    :param i: Run number
+    :return: Dict containing run metadata
+    """
+    case = OUT / f"run_{i:03d}"
+    outdir = case / "out"
+    if case.exists():
+        raise FileExistsError(
+            f"{case} already exists. Change RUN_VERSION or remove the old run directory."
+        )
+    outdir.mkdir(parents=True)
+    
+    # Build command line arguments for ksz_2lpt.x
+    args = [
+        str(EXEC),
+        str(outdir) + "/",
+        str(PARAMS["zmean_zre"]),
+        str(PARAMS["alpha_zre"]),
+        str(PARAMS["kb_zre"]),
+        str(PARAMS["b0_zre"]),
+    ]
+    
+    # Start the timer for elapsed time
+    started_at = time.strftime("%Y-%m-%dT%H:%M:%S")
+    t0 = time.perf_counter()
+    
+    with (case / "stdout.txt").open("w") as stdout, (case / "stderr.log").open("w") as stderr:
+        result_out = sp.run(args, stdout=stdout, stderr=stderr)
+        
+    wall_seconds = round(time.perf_counter() - t0, 2)
+    ended_at = time.strftime("%Y-%m-%dT%H:%M:%S")
+    
+    return {
+        "run": i,
+        "returncode": result_out.returncode,
+        "wall_seconds": wall_seconds,
+        "started_at": started_at,
+        "ended_at": ended_at,
+        "output_dir": str(outdir),
+    }
+
+
+def main():
     if not EXEC.is_file():
-        print(f"error: {EXEC} not found")
-        return 2
+        raise FileNotFoundError(f"Could not find executable: {EXEC}")
 
-    # Check output root exists / create it
     OUT.mkdir(parents=True, exist_ok=True)
-    print(f"baseline: {OUT}")
-    capture_provenance(OUT / "provenance.txt")
+    write_provenance()
 
-    # Run the simulation, writing results after each one
     results = []
-    for i in range(REPEATS):
-        results.append(run_case(f"run_{i + 1}", OUT))
-        write_results(OUT, results)
 
-    ok = [r for r in results if r["returncode"] == 0]
+    for i in range(1, REPEATS + 1):
+        print(f"Running case {i}/{REPEATS}")
+        record = run_case(i)
+        results.append(record)
 
-    # Do identical runs give identical output
-    sigs = [r["products"] for r in ok if r["products"]]
-    if len(sigs) >= 2:
-        print(f"\nreproducible: {all(s == sigs[0] for s in sigs)}")
+        summary = {
+            "host": platform.node(),
+            "executable": str(EXEC),
+            "params": PARAMS,
+            "omp_num_threads": os.environ.get("OMP_NUM_THREADS"),
+            "runs": results,
+        }
 
-    # Spread in wall time, to judge a future GPU speedup against
-    walls = [r["wall_seconds"] for r in ok]
-    if len(walls) >= 2:
-        lo, hi = min(walls), max(walls)
-        spread = (hi - lo) / hi if hi else 0.0
-        print(f"wall time: {lo}-{hi}s, spread {spread:.1%} over {len(walls)} runs")
+        (OUT / "results.json").write_text(json.dumps(summary, indent=2))
 
-    print(f"\nwrote {OUT}/results.json, summary.csv, provenance.txt")
-    return 0
+    print(f"Wrote {OUT / 'results.json'}")
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()

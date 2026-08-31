@@ -19,12 +19,14 @@ which ifort
 
 # Set environment variables
 export KMP_LIBRARY=turnaround
-export KMP_SCHEDULE=static
+export OMP_SCHEDULE=static
 export KMP_STACKSIZE=256m
 
 # Define the simulation code directory
+RUN_VERSION="v2"
+RESULT_NAME="zreion_cpu_baseline_${RUN_VERSION}"
 SIM_DIR="/jet/home/rpearce/software/ksz_2lpt/"
-SCRIPT_DIR="$SLURM_SUBMIT_DIR"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 KSZ_BIN="$SIM_DIR/ksz_2lpt.x"
 MAMBA="/jet/home/rpearce/miniforge3/bin/mamba"
 
@@ -48,12 +50,12 @@ ln -sf "$SIM_DIR/planck_2018_transfer_z000.dat" "$SCRIPT_DIR/"
 
 # Tar the results to Ocean, since /jet/home does not have room for the HDF5
 BASELINE_DIR="$HOME/ocean/baseline"
-TARBALL="$BASELINE_DIR/zreion_baseline_${SLURM_JOB_ID:-local}.tar.gz"
+TARBALL="$BASELINE_DIR/${RESULT_NAME}_${SLURM_JOB_ID:-local}.tar.gz"
 
-du -sh "$BASELINE_DIR/zreion_cpu_baseline"
+du -sh "$BASELINE_DIR/$RESULT_NAME"
 df -h "$BASELINE_DIR" | tail -1
 
-tar -czf "$TARBALL" -C "$BASELINE_DIR" zreion_cpu_baseline
+tar -czf "$TARBALL" -C "$BASELINE_DIR" "$RESULT_NAME"
 
 echo "Bundle: $TARBALL"
 ls -lh "$TARBALL"
