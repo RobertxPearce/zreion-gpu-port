@@ -1,6 +1,6 @@
 # kSZ 2LPT Repository
 zreion/ksz_2lpt
-zreion/ksz_2lpt_cpu
+zreion/ksz_2lpt_cpu/src/
 
 # Simulation files
 planck_2018_transfer_z000.dat
