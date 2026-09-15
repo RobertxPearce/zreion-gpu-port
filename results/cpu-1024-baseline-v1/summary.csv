@@ -1,0 +1,11 @@
+tag,omp_threads_env,rc,wall_seconds,peak_rss_gb
+run_1,unset,0,425.16,188.44
+run_2,unset,0,340.09,188.46
+run_3,unset,0,379.01,188.44
+run_4,unset,0,361.39,188.45
+run_5,unset,0,364.06,188.47
+run_6,unset,0,365.35,188.45
+run_7,unset,0,389.96,188.48
+run_8,unset,0,378.54,188.45
+run_9,unset,0,354.06,188.46
+run_10,unset,0,351.87,188.46
