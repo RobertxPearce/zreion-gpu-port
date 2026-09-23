@@ -11,26 +11,76 @@ The fork lives in `src/` and is its own Git repository. Source changes are commi
 
 ## Changes from the Original
 
-### Set Bridges-2 Run Configuration (`a0e5aad`)
+Changes from the original are described in [CHANGELOG.md](CHANGELOG.md).
 
-Configuration only. No physics or numerics changed, so baselines from this commit are comparable to upstream at matching settings.
 
-| File | What and Why                                                                                                                |
-|---|-----------------------------------------------------------------------------------------------------------------------------|
-| `Makefile` | `H5HOME` points at a local HDF5 1.14.6 build rather than plaplant's 1.12.0                                                  |
-| `global.f90` | `N_cpu` 8 to 128, for one full RM node. `N_sims` 30 to 1. `save_t21_lightcone` off, to skip writing the full 21cm lightcone |
-| `job.sh` | Notification address                                                                                                        |
+## Building and running
 
-### Add Compile-Time Grid Size Selection and Guard Domain Subdivision (`fc3ed9b`)
-
-Grid size becomes a build flag. Defaults are unchanged, so results still match `a0e5aad`.
+On Bridges-2, from `zreion/ksz_2lpt_cpu/src`:
 
 ```bash
-make clean && make NGRID=128 ksz_2lpt.x
+module unload intel && module load intel-icc intel-mkl
+make clean && make NGRID=512 NDM=512 NCPU=128 ksz_2lpt.x
+
+./ksz_2lpt.x <dir_out>/ <zmean_zre> <alpha_zre> <kb_zre> <b0_zre> \
+             <iseed> <save_grf> <read_grf> <ckpt_level>
 ```
 
-| File | What and Why                                                                                                                               |
-|---|--------------------------------------------------------------------------------------------------------------------------------------------|
-| `global.f90` | `Ndm` and `N_grid` read the `NDM_VALUE` and `NGRID_VALUE` macros, defaulting to 1024                                                       |
-| `Makefile` | `NGRID ?= 1024` and `NDM ?= $(NGRID)`, passed to the compiler as `-D` flags through the `-fpp` already in `FFLAGS`                         |
-| `domain_tools.f90` | Sentinel in `init_domain`. Its subdivision search could fall through leaving `n1`, `nx` and `Ndomain` undefined, then allocate on garbage  |
+| Argument | Meaning |
+|---|---|
+| `dir_out` | Output directory. Needs the trailing `/` |
+| `zmean_zre` … `b0_zre` | zreion parameters; default to `cosmo_parameters.f90` |
+| `iseed` | `0` draws a fresh realization; any other value replays that one |
+| `save_grf` / `read_grf` | `1` writes / reads `<dir_out>/grf.hdf5`; not both |
+| `ckpt_level` | `1` writes `<dir_out>/checkpoints.hdf5` |
+
+All arguments are optional. Things to know:
+
+- **Grid size and thread count are build flags** (`NGRID`, `NDM`, `NCPU`), and changing them needs `make clean`. `OMP_NUM_THREADS` has no effect.
+- **`planck_2018_transfer_z000.dat` is opened by relative path**, so run the binary from `src/` or from a directory with a symlink to the file. The SLURM scripts create that link.
+- **HDF5 is a local build** at `/jet/home/rpearce/local/hdf5-1.14.6`, set by `H5HOME` in the `Makefile`.
+- **Do not set `KMP_SCHEDULE=static`.** The Intel runtime rejects it with `OMP: Warning #50` and ignores it.
+
+## Configuration
+
+Fixed in `global.f90` unless noted.
+
+| Parameter | Value |
+|---|---|
+| `Ndm`, `N_grid`, `N_cpu` | 1024, 1024, 128 by default; set at build time |
+| `N_dom_seed` | 128: the domain grid does not change with thread count |
+| `box` | 2000 Mpc/h at every N; changing N changes resolution, not volume |
+| `N_sims` | 1: one realization per run |
+| `use_bt` | `.false.`: constant galaxy bias, since `data/bt_bias.txt` is missing |
+| `save_t21_lightcone` | `.false.` |
+
+## Baseline measurements
+
+`results/cpu-1024-baseline-v1/`: ten runs at N=1024 on one Bridges-2 RM node, 128 threads.
+
+| | |
+|---|---|
+| Wall time | mean 371 s, range 340–425 s |
+| Peak RSS | 188 GiB |
+| CPU utilisation | about 12,000%, i.e. about 120 of 128 cores busy, including threads spinning while they wait |
+
+These runs predate the seed option, so each is an independent realization and they cannot be
+compared file by file. They also predate the descriptor-leak and `dtau` fixes, which should not
+change results or timing measurably. See [CHANGELOG.md](CHANGELOG.md).
+
+## Runtime breakdown
+
+From `run_1/run.log` (wall time 425 s).
+
+| Routine | Total | Calls | Note |
+|---|---:|---:|---|
+| `calc_ksz_t21_fields` | 398 s | 1 | Includes 21 of the 22 `calc_density_velocity_fields` calls; about 81 s is its own sightline work |
+| `calc_density_velocity_fields` | 307 s | 22 | The main port target |
+| ├ `calc_gradphi_2` | 118 s | 22 | 10 FFTs per call |
+| ├ `calc_gradphi_1` | 42 s | 22 | 3 FFTs per call |
+| ├ `link_dm` | 22 s | 22 | Linked list; not needed on GPU |
+| ├ `calc_dm` | 10 s | 22 | Fully parallel |
+| └ deposition | 115 s | 22 | TSC scatter; hardest to port |
+| `calc_rho_ion_fields` | 16 s | 21 | |
+| `calc_zreion` | 14 s | 1 | |
+| `calc_pspec` | 8 s | 84 | |
