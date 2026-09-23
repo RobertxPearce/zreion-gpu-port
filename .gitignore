@@ -68,8 +68,10 @@ data/
 *.npy
 *.npz
 
-# Results
+# Results Metadata only
 !results/**/run.log
+!results/**/smoke/*.log
+results/**/*-metadata_*.tar.gz
 
 # Python
 __pycache__/
