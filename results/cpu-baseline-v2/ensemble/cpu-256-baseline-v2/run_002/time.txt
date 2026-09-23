@@ -1,0 +1,23 @@
+	Command being timed: "/jet/home/rpearce/software/zreion-gpu-port/zreion/ksz_2lpt_cpu/src/ksz_2lpt.x /jet/home/rpearce/ocean/baseline/cpu-256-baseline-v2/run_002/out/ 8.0 0.5 1.05 0.45 727663907 1 0 1"
+	User time (seconds): 1040.52
+	System time (seconds): 26.26
+	Percent of CPU this job got: 10658%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:10.00
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 3406700
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 286
+	Minor (reclaiming a frame) page faults: 40992
+	Voluntary context switches: 2621
+	Involuntary context switches: 1328045
+	Swaps: 0
+	File system inputs: 16
+	File system outputs: 3683816
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

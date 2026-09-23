@@ -1,0 +1,450 @@
+ Num cpu avail:          128
+ dir_out:   /jet/home/rpearce/ocean/baseline/cpu-1024-baseline-v2/run_005/out/
+ zmean_zre:    8.00000000000000     
+ alpha_zre:   0.500000000000000     
+ kb_zre:       1.05000000000000     
+ b0_zre:      0.450000000000000     
+ iseed:       1345545299
+ save_grf:   F
+ read_grf:   F
+ ckpt_level:           0
+    0.52  23:12:22  23:12:22  Called init dm
+    0.00  23:12:22  23:12:22  Called init domain
+    0.01  23:12:22  23:12:22  Called calc cosmo distance
+    0.00  23:12:22  23:12:22  Called calc angular distance
+ Nsightpix:          698
+    0.00  23:12:22  23:12:22  Called calc Nsightpix
+    1.35  23:12:22  23:12:24  Called init fields
+Reading planck_2018_transfer_z000.dat
+    0.01  23:12:24  23:12:24  Called calc linear pk
+ 
+ 
+ Iteration            1  of            1
+ GRF seed:   1345545299
+ GRF:   1.1406271E-05   1.000010      -6.208441       5.937467    
+    0.29  23:12:24  23:12:24  Called make gaussian random field
+    0.88  23:12:24  23:12:25  Called calc delta field
+    0.02  23:12:25  23:12:25  Called calc cosmo var
+    1.53  23:12:25  23:12:26  Called calc gradphi 1
+    4.37  23:12:26  23:12:31  Called calc gradphi 2
+    0.36  23:12:31  23:12:31  Called calc dm
+    0.79  23:12:31  23:12:32  Called link dm
+ redshift:    8.00000000000000     
+ density:    1.000000      0.2547232       5.624116      0.2687210    
+ vx:        7.5613767E-05   135.8977       742.1198      -778.5268    
+ vy:        1.1674171E-04   134.7078       734.6708      -712.3422    
+ vz:       -2.5067179E-04   134.8020       719.4818      -733.5519    
+   11.58  23:12:25  23:12:36  Called calc density velocity fields
+ zreion:    8.000000      0.9405615       25.58563       5.269129    
+z, x, xm:   5.000  0.000  0.000
+z, x, xm:   5.500  0.000  0.000
+z, x, xm:   6.000  0.000  0.000
+z, x, xm:   6.500  0.015  0.008
+z, x, xm:   7.000  0.115  0.076
+z, x, xm:   7.500  0.328  0.247
+z, x, xm:   8.000  0.566  0.468
+z, x, xm:   8.500  0.750  0.663
+z, x, xm:   9.000  0.865  0.802
+z, x, xm:   9.500  0.931  0.889
+z, x, xm:  10.000  0.965  0.939
+z, x, xm:  10.500  0.982  0.967
+z, x, xm:  11.000  0.991  0.982
+z, x, xm:  11.500  0.996  0.991
+z, x, xm:  12.000  0.998  0.995
+z, x, xm:  12.500  0.999  0.997
+z, x, xm:  13.000  0.999  0.999
+z, x, xm:  13.500  1.000  0.999
+z, x, xm:  14.000  1.000  1.000
+z, x, xm:  14.500  1.000  1.000
+z, x, xm:  15.000  1.000  1.000
+z, x, xm:  16.000  1.000  1.000
+z, x, xm:  17.000  1.000  1.000
+z, x, xm:  18.000  1.000  1.000
+z, x, xm:  19.000  1.000  1.000
+z, x, xm:  20.000  1.000  1.000
+   14.07  23:12:25  23:12:39  Called calc zreion
+    0.01  23:12:39  23:12:39  Called calc tau
+    0.02  23:12:39  23:12:39  Called calc cosmo var
+    1.53  23:12:39  23:12:40  Called calc gradphi 1
+    4.33  23:12:40  23:12:45  Called calc gradphi 2
+    0.36  23:12:45  23:12:45  Called calc dm
+    0.82  23:12:45  23:12:46  Called link dm
+ redshift:    5.50000000000000     
+ density:    1.000000      0.3583142       12.83418      0.1714555    
+ vx:        2.1791491E-05   159.3840       863.9819      -917.7924    
+ vy:        4.3446016E-05   157.9855       862.0125      -838.9139    
+ vz:       -1.8492290E-04   158.0968       848.9495      -850.4520    
+   11.63  23:12:39  23:12:51  Called calc density velocity fields
+    0.02  23:12:51  23:12:51  Called calc cosmo var
+    1.53  23:12:51  23:12:52  Called calc gradphi 1
+    4.32  23:12:52  23:12:56  Called calc gradphi 2
+    0.36  23:12:56  23:12:57  Called calc dm
+    0.82  23:12:57  23:12:58  Called link dm
+ redshift:    6.00000000000000     
+ density:    1.000000      0.3311443       10.65724      0.1913908    
+ vx:        2.9575916E-05   153.7399       832.6088      -878.7697    
+ vy:        3.0784733E-05   152.3921       831.5786      -809.6743    
+ vz:       -2.2928338E-04   152.4992       821.9695      -834.2980    
+   11.65  23:12:51  23:13:02  Called calc density velocity fields
+ xbar:   0.999999798834324     
+ ion: -5.1918587E-17  4.4851500E-04  -1.000000      2.0116572E-07
+    0.34  23:13:02  23:13:03  Called calc rho ion fields
+    0.04  23:13:03  23:13:03  Called calc pspec
+    0.04  23:13:03  23:13:03  Called calc pspec
+    0.07  23:13:03  23:13:03  Called calc pspec
+    0.03  23:13:03  23:13:03  Called calc pspec
+ xbar:   0.999658444896340     
+ ion: -5.3814385E-16  1.8484367E-02  -1.000000      3.4167181E-04
+    0.33  23:13:03  23:13:04  Called calc rho ion fields
+    0.04  23:13:05  23:13:05  Called calc pspec
+    0.03  23:13:05  23:13:05  Called calc pspec
+    0.06  23:13:05  23:13:05  Called calc pspec
+    0.03  23:13:05  23:13:05  Called calc pspec
+    0.02  23:13:05  23:13:05  Called calc cosmo var
+    1.53  23:13:05  23:13:06  Called calc gradphi 1
+    4.35  23:13:06  23:13:11  Called calc gradphi 2
+    0.36  23:13:11  23:13:11  Called calc dm
+    0.81  23:13:11  23:13:12  Called link dm
+ redshift:    6.50000000000000     
+ density:    1.000000      0.3078838       8.929501      0.2116999    
+ vx:        4.1390922E-05   148.6426       808.1442      -849.9061    
+ vy:        3.7603535E-05   147.3402       805.2110      -777.5642    
+ vz:       -2.5772818E-04   147.4435       793.4225      -813.8049    
+   11.62  23:13:05  23:13:16  Called calc density velocity fields
+ xbar:   0.984793519601226     
+ ion:  1.3794596E-14  0.1242630      -1.000000      1.5441288E-02
+    0.34  23:13:16  23:13:17  Called calc rho ion fields
+    0.04  23:13:18  23:13:18  Called calc pspec
+    0.04  23:13:18  23:13:18  Called calc pspec
+    0.07  23:13:18  23:13:18  Called calc pspec
+    0.03  23:13:18  23:13:18  Called calc pspec
+    0.02  23:13:18  23:13:18  Called calc cosmo var
+    1.54  23:13:18  23:13:20  Called calc gradphi 1
+    4.36  23:13:20  23:13:24  Called calc gradphi 2
+    0.36  23:13:24  23:13:25  Called calc dm
+    0.81  23:13:25  23:13:25  Called link dm
+ redshift:    7.00000000000000     
+ density:    1.000000      0.2877599       7.555255      0.2320447    
+ vx:        5.4438016E-05   144.0114       785.1882      -823.4139    
+ vy:        5.8898739E-05   142.7500       779.4994      -746.5782    
+ vz:       -2.6830458E-04   142.8500       765.3763      -787.2101    
+   11.60  23:13:18  23:13:30  Called calc density velocity fields
+ xbar:   0.885208556428552     
+ ion:  1.1738684E-14  0.3601073      -1.000000      0.1296773    
+    0.36  23:13:30  23:13:30  Called calc rho ion fields
+    0.04  23:13:31  23:13:31  Called calc pspec
+    0.03  23:13:31  23:13:31  Called calc pspec
+    0.06  23:13:31  23:13:31  Called calc pspec
+    0.04  23:13:31  23:13:31  Called calc pspec
+    0.02  23:13:31  23:13:31  Called calc cosmo var
+    1.52  23:13:31  23:13:33  Called calc gradphi 1
+    4.34  23:13:33  23:13:37  Called calc gradphi 2
+    0.36  23:13:37  23:13:38  Called calc dm
+    0.80  23:13:38  23:13:38  Called link dm
+ redshift:    7.50000000000000     
+ density:    1.000000      0.2701894       6.470925      0.2521820    
+ vx:        6.6203182E-05   139.7809       763.0347      -801.3699    
+ vy:        8.7407287E-05   138.5569       754.4627      -729.1261    
+ vz:       -2.6451921E-04   138.6538       738.6877      -757.1912    
+   11.54  23:13:31  23:13:43  Called calc density velocity fields
+ xbar:   0.671566522680223     
+ ion:  1.8582033E-14  0.6993252      -1.000000      0.4890558    
+    0.36  23:13:43  23:13:43  Called calc rho ion fields
+    0.04  23:13:44  23:13:44  Called calc pspec
+    0.03  23:13:44  23:13:44  Called calc pspec
+    0.06  23:13:44  23:13:44  Called calc pspec
+    0.03  23:13:44  23:13:44  Called calc pspec
+    0.02  23:13:45  23:13:45  Called calc cosmo var
+    1.53  23:13:45  23:13:46  Called calc gradphi 1
+    4.36  23:13:46  23:13:50  Called calc gradphi 2
+    0.36  23:13:50  23:13:51  Called calc dm
+    0.79  23:13:51  23:13:52  Called link dm
+ redshift:    8.00000000000000     
+ density:    1.000000      0.2547232       5.624116      0.2687210    
+ vx:        7.5613767E-05   135.8977       742.1198      -778.5268    
+ vy:        1.1674171E-04   134.7078       734.6708      -712.3422    
+ vz:       -2.5067179E-04   134.8020       719.4818      -733.5519    
+   11.62  23:13:45  23:13:56  Called calc density velocity fields
+ xbar:   0.433994799852371     
+ ion: -8.6438886E-14   1.142005      -1.000000       1.304175    
+    0.36  23:13:56  23:13:57  Called calc rho ion fields
+    0.06  23:13:57  23:13:57  Called calc pspec
+    0.06  23:13:57  23:13:58  Called calc pspec
+    0.07  23:13:58  23:13:58  Called calc pspec
+    0.06  23:13:58  23:13:58  Called calc pspec
+    0.02  23:13:58  23:13:58  Called calc cosmo var
+    1.58  23:13:58  23:13:59  Called calc gradphi 1
+    4.51  23:13:59  23:14:04  Called calc gradphi 2
+    0.37  23:14:04  23:14:04  Called calc dm
+    0.80  23:14:04  23:14:05  Called link dm
+ redshift:    8.50000000000000     
+ density:    1.000000      0.2410094       5.108246      0.2830898    
+ vx:        8.2047140E-05   132.3176       721.1525      -758.1833    
+ vy:        1.4247849E-04   131.1591       716.2701      -696.4234    
+ vz:       -2.3069688E-04   131.2508       702.1900      -713.1710    
+   11.81  23:13:58  23:14:10  Called calc density velocity fields
+ xbar:   0.250414090231061     
+ ion: -2.3613598E-14   1.730140      -1.000000       2.993386    
+    0.37  23:14:10  23:14:10  Called calc rho ion fields
+    0.04  23:14:11  23:14:11  Called calc pspec
+    0.04  23:14:11  23:14:11  Called calc pspec
+    0.07  23:14:11  23:14:11  Called calc pspec
+    0.03  23:14:11  23:14:11  Called calc pspec
+    0.02  23:14:12  23:14:12  Called calc cosmo var
+    1.55  23:14:12  23:14:13  Called calc gradphi 1
+    4.38  23:14:13  23:14:18  Called calc gradphi 2
+    0.36  23:14:18  23:14:18  Called calc dm
+    0.78  23:14:18  23:14:19  Called link dm
+ redshift:    9.00000000000000     
+ density:    1.000000      0.2287685       4.662298      0.2966461    
+ vx:        8.5210530E-05   129.0038       703.8547      -739.8553    
+ vy:        1.6231430E-04   127.8744       699.0624      -681.1117    
+ vz:       -2.0811410E-04   127.9638       685.7706      -693.1209    
+   11.52  23:14:12  23:14:23  Called calc density velocity fields
+ xbar:   0.134579722769558     
+ ion: -1.1777200E-14   2.535851      -1.000000       6.430540    
+    0.38  23:14:23  23:14:24  Called calc rho ion fields
+    0.04  23:14:24  23:14:24  Called calc pspec
+    0.04  23:14:24  23:14:24  Called calc pspec
+    0.07  23:14:24  23:14:24  Called calc pspec
+    0.03  23:14:24  23:14:25  Called calc pspec
+    0.02  23:14:25  23:14:26  Called calc cosmo var
+    1.53  23:14:26  23:14:27  Called calc gradphi 1
+    4.53  23:14:27  23:14:32  Called calc gradphi 2
+    0.36  23:14:32  23:14:32  Called calc dm
+    0.77  23:14:32  23:14:33  Called link dm
+ redshift:    9.50000000000000     
+ density:    1.000000      0.2177756       4.282412      0.3101400    
+ vx:        8.5617139E-05   125.9254       687.1684      -722.2526    
+ vy:        1.7576787E-04   124.8231       682.8826      -666.1990    
+ vz:       -1.8523098E-04   124.9102       670.0394      -680.3271    
+   11.72  23:14:25  23:14:37  Called calc density velocity fields
+ xbar:   6.943526584655046E-002
+ ion:  1.1823604E-14   3.660861      -1.000000       13.40190    
+    0.38  23:14:37  23:14:38  Called calc rho ion fields
+    0.07  23:14:39  23:14:39  Called calc pspec
+    0.06  23:14:39  23:14:39  Called calc pspec
+    0.08  23:14:39  23:14:39  Called calc pspec
+    0.06  23:14:39  23:14:39  Called calc pspec
+    0.02  23:14:39  23:14:39  Called calc cosmo var
+    1.60  23:14:39  23:14:41  Called calc gradphi 1
+    4.53  23:14:41  23:14:45  Called calc gradphi 2
+    0.36  23:14:45  23:14:46  Called calc dm
+    0.76  23:14:46  23:14:46  Called link dm
+ redshift:    10.0000000000000     
+ density:    1.000000      0.2078482       3.973868      0.3234889    
+ vx:        8.3855171E-05   123.0562       670.8828      -705.1445    
+ vy:        1.8336801E-04   121.9791       667.5396      -651.6506    
+ vz:       -1.6346251E-04   122.0642       654.9453      -670.2399    
+   11.76  23:14:39  23:14:51  Called calc density velocity fields
+ xbar:   3.505963925272226E-002
+ ion:  3.9340818E-14   5.246220      -1.000000       27.52283    
+    0.38  23:14:51  23:14:51  Called calc rho ion fields
+    0.04  23:14:52  23:14:52  Called calc pspec
+    0.03  23:14:52  23:14:52  Called calc pspec
+    0.07  23:14:52  23:14:52  Called calc pspec
+    0.06  23:14:52  23:14:52  Called calc pspec
+    0.02  23:14:52  23:14:52  Called calc cosmo var
+    1.55  23:14:52  23:14:54  Called calc gradphi 1
+    4.44  23:14:54  23:14:58  Called calc gradphi 2
+    0.36  23:14:58  23:14:59  Called calc dm
+    0.75  23:14:59  23:15:00  Called link dm
+ redshift:    10.5000000000000     
+ density:    1.000000      0.1988366       3.741897      0.3366281    
+ vx:        8.0774902E-05   120.3739       654.9270      -689.7194    
+ vy:        1.8606969E-04   119.3203       652.9456      -637.4521    
+ vz:       -1.4350456E-04   119.4035       640.4700      -659.0236    
+   11.52  23:14:52  23:15:04  Called calc density velocity fields
+ xbar:   1.753945276141167E-002
+ ion:  1.3370381E-15   7.484272      -1.000000       56.01432    
+    0.39  23:15:04  23:15:04  Called calc rho ion fields
+    0.04  23:15:05  23:15:05  Called calc pspec
+    0.04  23:15:05  23:15:05  Called calc pspec
+    0.07  23:15:05  23:15:05  Called calc pspec
+    0.03  23:15:05  23:15:05  Called calc pspec
+    0.02  23:15:06  23:15:06  Called calc cosmo var
+    1.54  23:15:06  23:15:07  Called calc gradphi 1
+    4.41  23:15:07  23:15:12  Called calc gradphi 2
+    0.36  23:15:12  23:15:12  Called calc dm
+    0.75  23:15:12  23:15:13  Called link dm
+ redshift:    11.0000000000000     
+ density:    1.000000      0.1906173       3.529541      0.3495223    
+ vx:        7.6851939E-05   117.8593       639.8204      -676.3863    
+ vy:        1.8500650E-04   116.8278       639.0893      -623.7617    
+ vz:       -1.2567481E-04   116.9092       626.5793      -647.2448    
+   11.47  23:15:06  23:15:17  Called calc density velocity fields
+ xbar:   8.766285143792629E-003
+ ion:  1.5010237E-15   10.63360      -1.000000       113.0734    
+    0.37  23:15:17  23:15:17  Called calc rho ion fields
+    0.04  23:15:18  23:15:18  Called calc pspec
+    0.04  23:15:18  23:15:18  Called calc pspec
+    0.07  23:15:18  23:15:18  Called calc pspec
+    0.03  23:15:18  23:15:18  Called calc pspec
+    0.02  23:15:19  23:15:19  Called calc cosmo var
+    1.55  23:15:19  23:15:20  Called calc gradphi 1
+    4.42  23:15:20  23:15:25  Called calc gradphi 2
+    0.36  23:15:25  23:15:25  Called calc dm
+    0.74  23:15:25  23:15:26  Called link dm
+ redshift:    11.5000000000000     
+ density:    1.000000      0.1830877       3.335993      0.3621268    
+ vx:        7.2491530E-05   115.4959       628.1592      -663.2778    
+ vy:        1.8116600E-04   114.4850       625.9404      -610.6450    
+ vz:       -1.1004508E-04   114.5648       613.4042      -635.3176    
+   11.81  23:15:19  23:15:30  Called calc density velocity fields
+ xbar:   4.396784119307995E-003
+ ion: -1.4105470E-16   15.04789      -1.000000       226.4390    
+    0.38  23:15:30  23:15:31  Called calc rho ion fields
+    0.04  23:15:32  23:15:32  Called calc pspec
+    0.04  23:15:32  23:15:32  Called calc pspec
+    0.07  23:15:32  23:15:32  Called calc pspec
+    0.03  23:15:32  23:15:32  Called calc pspec
+    0.02  23:15:32  23:15:32  Called calc cosmo var
+    1.55  23:15:32  23:15:33  Called calc gradphi 1
+    4.42  23:15:33  23:15:38  Called calc gradphi 2
+    0.36  23:15:38  23:15:38  Called calc dm
+    0.74  23:15:38  23:15:39  Called link dm
+ redshift:    12.0000000000000     
+ density:    1.000000      0.1761620       3.160850      0.3744363    
+ vx:        6.7878915E-05   113.2691       616.7751      -650.4994    
+ vy:        1.7528323E-04   112.2778       613.4588      -598.1198    
+ vz:       -9.6500720E-05   112.3560       600.8564      -623.4828    
+   11.56  23:15:32  23:15:43  Called calc density velocity fields
+ xbar:   2.222152426838875E-003
+ ion: -3.0771826E-15   21.18995      -1.000000       449.0141    
+    0.37  23:15:43  23:15:44  Called calc rho ion fields
+    0.04  23:15:45  23:15:45  Called calc pspec
+    0.04  23:15:45  23:15:45  Called calc pspec
+    0.07  23:15:45  23:15:45  Called calc pspec
+    0.03  23:15:45  23:15:45  Called calc pspec
+    0.02  23:15:45  23:15:45  Called calc cosmo var
+    1.55  23:15:45  23:15:46  Called calc gradphi 1
+    4.42  23:15:46  23:15:51  Called calc gradphi 2
+    0.39  23:15:51  23:15:51  Called calc dm
+    0.73  23:15:51  23:15:52  Called link dm
+ redshift:    12.5000000000000     
+ density:    1.000000      0.1697681       3.016834      0.3864292    
+ vx:        6.3217230E-05   111.1665       605.7272      -638.1116    
+ vy:        1.6806109E-04   110.1937       601.6033      -586.1779    
+ vz:       -8.4819752E-05   110.2703       588.9052      -611.8830    
+   11.53  23:15:45  23:15:56  Called calc density velocity fields
+ xbar:   1.133129931986332E-003
+ ion:  1.2923690E-15   29.69026      -1.000000       881.5114    
+    0.37  23:15:56  23:15:57  Called calc rho ion fields
+    0.04  23:15:58  23:15:58  Called calc pspec
+    0.04  23:15:58  23:15:58  Called calc pspec
+    0.07  23:15:58  23:15:58  Called calc pspec
+    0.03  23:15:58  23:15:58  Called calc pspec
+    0.02  23:15:58  23:15:58  Called calc cosmo var
+    1.54  23:15:58  23:15:59  Called calc gradphi 1
+    4.43  23:15:59  23:16:04  Called calc gradphi 2
+    0.36  23:16:04  23:16:04  Called calc dm
+    0.72  23:16:04  23:16:05  Called link dm
+ redshift:    13.0000000000000     
+ density:    1.000000      0.1638449       2.895959      0.3981018    
+ vx:        5.8697013E-05   109.1770       595.4305      -626.1459    
+ vy:        1.6006148E-04   108.2216       590.3317      -574.7751    
+ vz:       -7.4784242E-05   108.2969       577.5177      -600.5992    
+   11.45  23:15:58  23:16:09  Called calc density velocity fields
+ xbar:   5.845343694090843E-004
+ ion:  2.6333102E-15   41.34929      -1.000000       1709.763    
+    0.39  23:16:09  23:16:10  Called calc rho ion fields
+    0.04  23:16:10  23:16:11  Called calc pspec
+    0.04  23:16:11  23:16:11  Called calc pspec
+    0.07  23:16:11  23:16:11  Called calc pspec
+    0.03  23:16:11  23:16:11  Called calc pspec
+    0.02  23:16:11  23:16:11  Called calc cosmo var
+    1.57  23:16:11  23:16:12  Called calc gradphi 1
+    4.44  23:16:12  23:16:17  Called calc gradphi 2
+    0.36  23:16:17  23:16:17  Called calc dm
+    0.72  23:16:17  23:16:18  Called link dm
+ redshift:    13.5000000000000     
+ density:    1.000000      0.1583405       2.787730      0.4094456    
+ vx:        5.4337179E-05   107.2909       585.6642      -614.6157    
+ vy:        1.5163989E-04   106.3521       579.6041      -563.7996    
+ vz:       -6.6103901E-05   106.4260       566.6605      -589.6739    
+   11.47  23:16:11  23:16:22  Called calc density velocity fields
+ xbar:   3.041541203856468E-004
+ ion:  6.1517631E-16   57.33068      -1.000000       3286.807    
+    0.38  23:16:22  23:16:23  Called calc rho ion fields
+    0.04  23:16:23  23:16:23  Called calc pspec
+    0.03  23:16:23  23:16:23  Called calc pspec
+    0.07  23:16:23  23:16:24  Called calc pspec
+    0.03  23:16:24  23:16:24  Called calc pspec
+    0.02  23:16:24  23:16:24  Called calc cosmo var
+    1.56  23:16:24  23:16:25  Called calc gradphi 1
+    4.46  23:16:25  23:16:30  Called calc gradphi 2
+    0.36  23:16:30  23:16:30  Called calc dm
+    0.72  23:16:30  23:16:31  Called link dm
+ redshift:    14.0000000000000     
+ density:    1.000000      0.1532103       2.690280      0.4204672    
+ vx:        5.0207640E-05   105.4995       576.2260      -603.5230    
+ vy:        1.4309521E-04   104.5764       569.3831      -553.1929    
+ vz:       -5.8550402E-05   104.6491       556.3016      -579.1249    
+   11.48  23:16:24  23:16:35  Called calc density velocity fields
+ xbar:   1.604501157999039E-004
+ ion: -4.5059442E-16   78.93964      -1.000000       6231.467    
+    0.37  23:16:35  23:16:36  Called calc rho ion fields
+    0.04  23:16:36  23:16:36  Called calc pspec
+    0.03  23:16:36  23:16:36  Called calc pspec
+    0.07  23:16:36  23:16:36  Called calc pspec
+    0.03  23:16:36  23:16:37  Called calc pspec
+    0.02  23:16:37  23:16:37  Called calc cosmo var
+    1.56  23:16:37  23:16:38  Called calc gradphi 1
+    4.44  23:16:38  23:16:43  Called calc gradphi 2
+    0.36  23:16:43  23:16:43  Called calc dm
+    0.71  23:16:43  23:16:44  Called link dm
+ redshift:    14.5000000000000     
+ density:    1.000000      0.1484161       2.602101      0.4311654    
+ vx:        4.6359608E-05   103.7953       567.1157      -593.9641    
+ vy:        1.3463588E-04   102.8872       559.6339      -542.9425    
+ vz:       -5.1982697E-05   102.9587       547.4459      -568.9523    
+   11.43  23:16:37  23:16:48  Called calc density velocity fields
+ xbar:   8.521415293216705E-005
+ ion:  2.3201926E-16   108.3242      -1.000000       11734.14    
+    0.38  23:16:48  23:16:48  Called calc rho ion fields
+    0.04  23:16:49  23:16:49  Called calc pspec
+    0.03  23:16:49  23:16:49  Called calc pspec
+    0.07  23:16:49  23:16:49  Called calc pspec
+    0.03  23:16:49  23:16:49  Called calc pspec
+    0.02  23:16:50  23:16:50  Called calc cosmo var
+    1.56  23:16:50  23:16:51  Called calc gradphi 1
+    4.45  23:16:51  23:16:56  Called calc gradphi 2
+    0.37  23:16:56  23:16:56  Called calc dm
+    0.71  23:16:56  23:16:57  Called link dm
+ redshift:    15.0000000000000     
+ density:    1.000000      0.1439248       2.522059      0.4415466    
+ vx:        4.2772466E-05   102.1715       558.3272      -585.1631    
+ vy:        1.2647235E-04   101.2776       550.4431      -533.0586    
+ vz:       -4.6249326E-05   101.3479       539.2719      -559.0689    
+   11.44  23:16:50  23:17:01  Called calc density velocity fields
+ xbar:   4.589278250932693E-005
+ ion: -1.8561541E-16   147.6107      -1.000000       21788.92    
+    0.37  23:17:01  23:17:01  Called calc rho ion fields
+    0.05  23:17:02  23:17:02  Called calc pspec
+    0.03  23:17:02  23:17:02  Called calc pspec
+    0.07  23:17:02  23:17:02  Called calc pspec
+    0.03  23:17:02  23:17:02  Called calc pspec
+    0.02  23:17:02  23:17:02  Called calc cosmo var
+    1.57  23:17:02  23:17:04  Called calc gradphi 1
+    4.44  23:17:04  23:17:08  Called calc gradphi 2
+    0.36  23:17:08  23:17:09  Called calc dm
+    0.70  23:17:09  23:17:09  Called link dm
+ redshift:    16.0000000000000     
+ density:    1.000000      0.1357394       2.382394      0.4613860    
+ vx:        3.6443751E-05   99.14107       541.6801      -568.2833    
+ vy:        1.1114115E-04   98.27377       534.2513      -517.4320    
+ vz:       -3.6770805E-05   98.34194       523.9146      -540.0765    
+   11.43  23:17:02  23:17:14  Called calc density velocity fields
+ xbar:   1.389347016811371E-005
+ ion:  1.6588293E-16   268.2820      -1.000000       71975.26    
+    0.38  23:17:14  23:17:14  Called calc rho ion fields
+    0.04  23:17:15  23:17:15  Called calc pspec
+    0.03  23:17:15  23:17:15  Called calc pspec
+    0.07  23:17:15  23:17:15  Called calc pspec
+    0.03  23:17:15  23:17:15  Called calc pspec
+  279.53  23:12:39  23:17:18  Called calc ksz t21 fields
+Writing /jet/home/rpearce/ocean/baseline/cpu-1024-baseline-v2/run_005/out/obs_grids.hdf5
+    0.35  23:17:18  23:17:19  Called write fields
+Writing /jet/home/rpearce/ocean/baseline/cpu-1024-baseline-v2/run_005/out/pk_arrays.hdf5
+    0.00  23:17:19  23:17:19  Called write pk
+    0.00  23:17:19  23:17:19  Called close h5

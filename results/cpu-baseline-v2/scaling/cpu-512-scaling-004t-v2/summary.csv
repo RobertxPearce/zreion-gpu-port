@@ -1,0 +1,3 @@
+case,run,grid,threads,seed,returncode,wall_seconds,peak_rss_gb,cpu_percent,user_seconds,system_seconds,save_grf,checkpoint_level,grf_sha256,checkpoints_sha256,obs_grids_sha256,pk_arrays_sha256,grf_bytes,checkpoints_bytes
+cpu-512-scaling-004t-v2,1,512,4,20250915,0,411.11,23.51,397.0,1629.66,4.52,False,0,,,b86d8b6acc17e03f45e31a1f71ccf2bb3d8d28afe54fefb0a05b443926116d88,d129b723590a02999289e6db36c66d8d916a1ae55ce2ddd9e124e9a45c34685f,,
+cpu-512-scaling-004t-v2,2,512,4,20250915,0,411.28,23.51,397.0,1630.46,4.84,False,0,,,743fafba7a45ed1677afef096ee3fdf762ea041f2c594ad43c4d04c952d4839d,bc2db64479895fa5fcd4e64fce46a265963952825aaadaa68d64ca1f5eee0639,,

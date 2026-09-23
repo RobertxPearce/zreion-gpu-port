@@ -1,0 +1,5 @@
+JobID           JobName  Partition        NodeList    Elapsed   TotalCPU    CPUTime     MaxRSS  AllocCPUS ConsumedEnergy      State ExitCode 
+------------ ---------- ---------- --------------- ---------- ---------- ---------- ---------- ---------- -------------- ---------- -------- 
+46824149     zreion_sc+         RM            r082   01:50:01   09:33:38 9-18:42:08                   128              0  COMPLETED      0:0 
+46824149.ba+      batch                       r082   01:50:01   09:33:38 9-18:42:08     23.95G        128              0  COMPLETED      0:0 
+46824149.ex+     extern                       r082   01:50:01  00:00.001 9-18:42:08          0        128              0  COMPLETED      0:0 

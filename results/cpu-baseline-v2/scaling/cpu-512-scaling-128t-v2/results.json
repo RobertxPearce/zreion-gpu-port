@@ -1,0 +1,99 @@
+{
+  "case": "cpu-512-scaling-128t-v2",
+  "host": "r082.ib.bridges2.psc.edu",
+  "run_version": "v2",
+  "slurm_job_id": "46824149",
+  "build": {
+    "grid": 512,
+    "threads": 128,
+    "binary": "/jet/home/rpearce/software/zreion-gpu-port/zreion/ksz_2lpt_cpu/src/ksz_2lpt.x",
+    "binary_sha256": "bc28073e667dac1a1aec6ff989e314047fd54261828d90531db7240c66391e77",
+    "built_at": "2026-09-22T23:46:49"
+  },
+  "reference": {
+    "source_dir": "/jet/home/rpearce/software/zreion-gpu-port/zreion/ksz_2lpt_cpu/src",
+    "commit": "b8126cf2a294ac46d1e83ed803b4beb9da96be8c",
+    "branch": "main",
+    "dirty": false
+  },
+  "runner": {
+    "source_dir": "/jet/home/rpearce/software/zreion-gpu-port/scripts/hpc",
+    "commit": "ccfff9e3ecd7f3cbcb0f6e6a146b04cc42b4d843",
+    "branch": "main",
+    "dirty": false
+  },
+  "params": {
+    "zmean_zre": 8.0,
+    "alpha_zre": 0.5,
+    "kb_zre": 1.05,
+    "b0_zre": 0.45
+  },
+  "runs": [
+    {
+      "run": 1,
+      "returncode": 0,
+      "seed": 20250915,
+      "seed_requested": 20250915,
+      "save_grf": false,
+      "checkpoint_level": 0,
+      "wall_seconds": 35.45,
+      "started_at": "2026-09-22T23:50:30",
+      "ended_at": "2026-09-22T23:51:06",
+      "output_dir": "/jet/home/rpearce/ocean/baseline/cpu-512-scaling-128t-v2/run_001/out",
+      "products": {
+        "obs_grids.hdf5": {
+          "sha256": "c0b81e69a6db973d34fa8ad75cf761a9db3a943edacff0fb0454b2c60c220795",
+          "bytes": 8409992
+        },
+        "pk_arrays.hdf5": {
+          "sha256": "432d3c25fb7129b72cab24abaf88f6be780b856321342d6f10e748880fbdbbe7",
+          "bytes": 1292792
+        }
+      },
+      "user_seconds": 4359.57,
+      "system_seconds": 47.98,
+      "cpu_percent": 12436.0,
+      "time_wall_clock": "0:35.44",
+      "peak_rss_gb": 23.89,
+      "major_page_faults": 2348,
+      "minor_page_faults": 63986,
+      "voluntary_context_switches": 4813,
+      "involuntary_context_switches": 17711,
+      "file_system_inputs": 11440,
+      "file_system_outputs": 19072
+    },
+    {
+      "run": 2,
+      "returncode": 0,
+      "seed": 20250915,
+      "seed_requested": 20250915,
+      "save_grf": false,
+      "checkpoint_level": 0,
+      "wall_seconds": 34.55,
+      "started_at": "2026-09-22T23:51:06",
+      "ended_at": "2026-09-22T23:51:41",
+      "output_dir": "/jet/home/rpearce/ocean/baseline/cpu-512-scaling-128t-v2/run_002/out",
+      "products": {
+        "obs_grids.hdf5": {
+          "sha256": "5b85e5bc2b6ffa07dae90bfbbb8408d52b62defae78a17adffd652941ae949cf",
+          "bytes": 8409992
+        },
+        "pk_arrays.hdf5": {
+          "sha256": "ab662e336684e011821b8c86ccb7b926b55655dcf0d53fdbb7643a48330e906a",
+          "bytes": 1292792
+        }
+      },
+      "user_seconds": 4325.09,
+      "system_seconds": 40.55,
+      "cpu_percent": 12638.0,
+      "time_wall_clock": "0:34.54",
+      "peak_rss_gb": 23.92,
+      "major_page_faults": 436,
+      "minor_page_faults": 49876,
+      "voluntary_context_switches": 3621,
+      "involuntary_context_switches": 17952,
+      "file_system_inputs": 16,
+      "file_system_outputs": 19072
+    }
+  ]
+}

@@ -1,0 +1,443 @@
+{
+  "case": "cpu-128-baseline-v2",
+  "host": "r170.ib.bridges2.psc.edu",
+  "run_version": "v2",
+  "slurm_job_id": "46824148",
+  "build": {
+    "grid": 128,
+    "threads": 128,
+    "binary": "/jet/home/rpearce/software/zreion-gpu-port/zreion/ksz_2lpt_cpu/src/ksz_2lpt.x",
+    "binary_sha256": "0c18e0befe94311092c26c6b35a1e1d0d1d1868d8eb903a41fe800065bf3f032",
+    "built_at": "2026-09-22T22:00:43"
+  },
+  "reference": {
+    "source_dir": "/jet/home/rpearce/software/zreion-gpu-port/zreion/ksz_2lpt_cpu/src",
+    "commit": "b8126cf2a294ac46d1e83ed803b4beb9da96be8c",
+    "branch": "main",
+    "dirty": false
+  },
+  "runner": {
+    "source_dir": "/jet/home/rpearce/software/zreion-gpu-port/scripts/hpc",
+    "commit": "ccfff9e3ecd7f3cbcb0f6e6a146b04cc42b4d843",
+    "branch": "main",
+    "dirty": false
+  },
+  "params": {
+    "zmean_zre": 8.0,
+    "alpha_zre": 0.5,
+    "kb_zre": 1.05,
+    "b0_zre": 0.45
+  },
+  "runs": [
+    {
+      "run": 1,
+      "returncode": 0,
+      "seed": 1184787996,
+      "seed_requested": 1184787996,
+      "save_grf": true,
+      "checkpoint_level": 1,
+      "wall_seconds": 5.75,
+      "started_at": "2026-09-22T22:04:28",
+      "ended_at": "2026-09-22T22:04:34",
+      "output_dir": "/jet/home/rpearce/ocean/baseline/cpu-128-baseline-v2/run_001/out",
+      "products": {
+        "grf.hdf5": {
+          "sha256": "33bd5a743c07bbe4d250036251e820b295de070258cf06748841736f7c3c17b7",
+          "bytes": 16783816
+        },
+        "checkpoints.hdf5": {
+          "sha256": "c2f5bd65d87bf3bdb6e4547fc21b4180b378fa522125eaa7284973da414e26bf",
+          "bytes": 219171288
+        },
+        "obs_grids.hdf5": {
+          "sha256": "3717fa3ed3d1ae529fa9b481de81d3170b2650d0dd221781ba4a7164fe30de7b",
+          "bytes": 541176
+        },
+        "pk_arrays.hdf5": {
+          "sha256": "f814de4575a3d40646a7cee17619d0b87722f0236571a0e7241126724b5a9486",
+          "bytes": 334328
+        }
+      },
+      "user_seconds": 559.13,
+      "system_seconds": 18.48,
+      "cpu_percent": 10066.0,
+      "time_wall_clock": "0:05.73",
+      "peak_rss_gb": 0.6,
+      "major_page_faults": 2400,
+      "minor_page_faults": 18881,
+      "voluntary_context_switches": 3850,
+      "involuntary_context_switches": 1432554,
+      "file_system_inputs": 11288,
+      "file_system_outputs": 462704
+    },
+    {
+      "run": 2,
+      "returncode": 0,
+      "seed": 1832019377,
+      "seed_requested": 1832019377,
+      "save_grf": true,
+      "checkpoint_level": 1,
+      "wall_seconds": 4.66,
+      "started_at": "2026-09-22T22:04:34",
+      "ended_at": "2026-09-22T22:04:39",
+      "output_dir": "/jet/home/rpearce/ocean/baseline/cpu-128-baseline-v2/run_002/out",
+      "products": {
+        "grf.hdf5": {
+          "sha256": "fa194713cb9bc1544a4e0e50ca049fe4c95b439c6ac723d37df0c19a321927d1",
+          "bytes": 16783816
+        },
+        "checkpoints.hdf5": {
+          "sha256": "eccb89a74d12c52918e8fd36be6f5ef88803d28992e6c7bcb6c854a2d282d68a",
+          "bytes": 219171288
+        },
+        "obs_grids.hdf5": {
+          "sha256": "72f9fb3118fc766b3c2b9aef5c3cbad2e002c6c503eb3b1e743dd35c974d3ea6",
+          "bytes": 541176
+        },
+        "pk_arrays.hdf5": {
+          "sha256": "6a37ac7cc61ca12f059962291b3077e1c6af5cb0045a726273011dca5de3dcc9",
+          "bytes": 334328
+        }
+      },
+      "user_seconds": 467.83,
+      "system_seconds": 16.75,
+      "cpu_percent": 10405.0,
+      "time_wall_clock": "0:04.65",
+      "peak_rss_gb": 0.6,
+      "major_page_faults": 242,
+      "minor_page_faults": 27236,
+      "voluntary_context_switches": 1209,
+      "involuntary_context_switches": 2506804,
+      "file_system_inputs": 8,
+      "file_system_outputs": 462696
+    },
+    {
+      "run": 3,
+      "returncode": 0,
+      "seed": 325579044,
+      "seed_requested": 325579044,
+      "save_grf": true,
+      "checkpoint_level": 1,
+      "wall_seconds": 9.24,
+      "started_at": "2026-09-22T22:04:39",
+      "ended_at": "2026-09-22T22:04:49",
+      "output_dir": "/jet/home/rpearce/ocean/baseline/cpu-128-baseline-v2/run_003/out",
+      "products": {
+        "grf.hdf5": {
+          "sha256": "e81277864fd4a50c41251eb777655d0db137d046243a30eaf6121dcdb0aab11b",
+          "bytes": 16783816
+        },
+        "checkpoints.hdf5": {
+          "sha256": "865ef1c05f53fee40890346fa472d68e9419f8c9bff9be16321ce6a57c60d10e",
+          "bytes": 219171288
+        },
+        "obs_grids.hdf5": {
+          "sha256": "c3c9cd41803bedcfd2a38addc43c0b04167c03adf9572f5966f3b2da856901a2",
+          "bytes": 541176
+        },
+        "pk_arrays.hdf5": {
+          "sha256": "e7b5fdbdef89db30a02ad7a346b618853eb2902f6f1876dc97f5e1411770baca",
+          "bytes": 334328
+        }
+      },
+      "user_seconds": 1030.83,
+      "system_seconds": 21.75,
+      "cpu_percent": 11394.0,
+      "time_wall_clock": "0:09.23",
+      "peak_rss_gb": 0.59,
+      "major_page_faults": 276,
+      "minor_page_faults": 23696,
+      "voluntary_context_switches": 1373,
+      "involuntary_context_switches": 2303980,
+      "file_system_inputs": 8,
+      "file_system_outputs": 462696
+    },
+    {
+      "run": 4,
+      "returncode": 0,
+      "seed": 1729110000,
+      "seed_requested": 1729110000,
+      "save_grf": true,
+      "checkpoint_level": 1,
+      "wall_seconds": 5.93,
+      "started_at": "2026-09-22T22:04:49",
+      "ended_at": "2026-09-22T22:04:55",
+      "output_dir": "/jet/home/rpearce/ocean/baseline/cpu-128-baseline-v2/run_004/out",
+      "products": {
+        "grf.hdf5": {
+          "sha256": "a67fb319d3967a678fa2b72501af4b04f1212ced8c02b7d795d566b8c1a49100",
+          "bytes": 16783816
+        },
+        "checkpoints.hdf5": {
+          "sha256": "33a8ab8fd26d3990ddd64a87b365ab018a3e888c49d2e3b20481b33bf9d63ff4",
+          "bytes": 219171288
+        },
+        "obs_grids.hdf5": {
+          "sha256": "b5bc89486ef23c29743d289568747d4fd135cce89df4f5085080ed3a823f6223",
+          "bytes": 541176
+        },
+        "pk_arrays.hdf5": {
+          "sha256": "415dc1584e4ddfb74d896d2a9a2fe0c186451ebb560223b525882007fe1a4ccc",
+          "bytes": 334328
+        }
+      },
+      "user_seconds": 687.35,
+      "system_seconds": 17.75,
+      "cpu_percent": 11912.0,
+      "time_wall_clock": "0:05.91",
+      "peak_rss_gb": 0.6,
+      "major_page_faults": 295,
+      "minor_page_faults": 19045,
+      "voluntary_context_switches": 1161,
+      "involuntary_context_switches": 2249328,
+      "file_system_inputs": 8,
+      "file_system_outputs": 462696
+    },
+    {
+      "run": 5,
+      "returncode": 0,
+      "seed": 524385856,
+      "seed_requested": 524385856,
+      "save_grf": true,
+      "checkpoint_level": 1,
+      "wall_seconds": 3.77,
+      "started_at": "2026-09-22T22:04:55",
+      "ended_at": "2026-09-22T22:04:59",
+      "output_dir": "/jet/home/rpearce/ocean/baseline/cpu-128-baseline-v2/run_005/out",
+      "products": {
+        "grf.hdf5": {
+          "sha256": "d4a5d8d51f6bf82f6feef2f186b3b26f2ae4c9bd20adca2b5d1fc9719e6707d4",
+          "bytes": 16783816
+        },
+        "checkpoints.hdf5": {
+          "sha256": "c8d6397e29d9b60d424a8c7cf4ed2e843b8534e340a0bc7df3ea19c96664add5",
+          "bytes": 219171288
+        },
+        "obs_grids.hdf5": {
+          "sha256": "2b84345bf09e9897546d5b6201d5e347e93b9f86afcf9379b0a2d5b65374dc16",
+          "bytes": 541176
+        },
+        "pk_arrays.hdf5": {
+          "sha256": "6811d4d5b2319e356471921ac2111819128793fd7218540ab97ed921018d65a5",
+          "bytes": 334328
+        }
+      },
+      "user_seconds": 421.6,
+      "system_seconds": 15.7,
+      "cpu_percent": 11612.0,
+      "time_wall_clock": "0:03.76",
+      "peak_rss_gb": 0.6,
+      "major_page_faults": 331,
+      "minor_page_faults": 25504,
+      "voluntary_context_switches": 1196,
+      "involuntary_context_switches": 2110956,
+      "file_system_inputs": 8,
+      "file_system_outputs": 462696
+    },
+    {
+      "run": 6,
+      "returncode": 0,
+      "seed": 1131908720,
+      "seed_requested": 1131908720,
+      "save_grf": true,
+      "checkpoint_level": 1,
+      "wall_seconds": 4.02,
+      "started_at": "2026-09-22T22:04:59",
+      "ended_at": "2026-09-22T22:05:03",
+      "output_dir": "/jet/home/rpearce/ocean/baseline/cpu-128-baseline-v2/run_006/out",
+      "products": {
+        "grf.hdf5": {
+          "sha256": "16eba3826166a07ed7d89b495ee1a54aeb4b714369eb79aef8f76564c91f27d8",
+          "bytes": 16783816
+        },
+        "checkpoints.hdf5": {
+          "sha256": "319c2211a7c3831d4111bfc701ab2d262178f5940373c85e356d70d2cb69bb23",
+          "bytes": 219171288
+        },
+        "obs_grids.hdf5": {
+          "sha256": "b964dcb52f558ed24aa3c9d8a9f6af9ca829d44cb1b7e81f903e7bfd13afc229",
+          "bytes": 541176
+        },
+        "pk_arrays.hdf5": {
+          "sha256": "75a932252a5fb4e04b3fd97479ee56135051cb4145f988e596b477bc8c11f149",
+          "bytes": 334328
+        }
+      },
+      "user_seconds": 460.64,
+      "system_seconds": 14.91,
+      "cpu_percent": 11850.0,
+      "time_wall_clock": "0:04.01",
+      "peak_rss_gb": 0.6,
+      "major_page_faults": 296,
+      "minor_page_faults": 25707,
+      "voluntary_context_switches": 1094,
+      "involuntary_context_switches": 1705047,
+      "file_system_inputs": 8,
+      "file_system_outputs": 462696
+    },
+    {
+      "run": 7,
+      "returncode": 0,
+      "seed": 1486439826,
+      "seed_requested": 1486439826,
+      "save_grf": true,
+      "checkpoint_level": 1,
+      "wall_seconds": 3.93,
+      "started_at": "2026-09-22T22:05:03",
+      "ended_at": "2026-09-22T22:05:07",
+      "output_dir": "/jet/home/rpearce/ocean/baseline/cpu-128-baseline-v2/run_007/out",
+      "products": {
+        "grf.hdf5": {
+          "sha256": "7c13f5a0c911bd3a5a030ed17118070f8ab85d5b2fc72b2da943a85c7fccd5ae",
+          "bytes": 16783816
+        },
+        "checkpoints.hdf5": {
+          "sha256": "72028a1547357e7b496a07687ba6bbc65d1da1d8d69904625ab543ccdfc29df5",
+          "bytes": 219171288
+        },
+        "obs_grids.hdf5": {
+          "sha256": "29ea60de636ad4e5c5703608a1dae4c99b20f7deb0097fd8a279e96bf77c48fc",
+          "bytes": 541176
+        },
+        "pk_arrays.hdf5": {
+          "sha256": "1f0303e8733d1842497c4f840921ddba4aeba37c5b95f3758c056f234ab3c4e1",
+          "bytes": 334328
+        }
+      },
+      "user_seconds": 446.8,
+      "system_seconds": 15.52,
+      "cpu_percent": 11773.0,
+      "time_wall_clock": "0:03.92",
+      "peak_rss_gb": 0.6,
+      "major_page_faults": 319,
+      "minor_page_faults": 25698,
+      "voluntary_context_switches": 1115,
+      "involuntary_context_switches": 1742412,
+      "file_system_inputs": 8,
+      "file_system_outputs": 462704
+    },
+    {
+      "run": 8,
+      "returncode": 0,
+      "seed": 1087507196,
+      "seed_requested": 1087507196,
+      "save_grf": true,
+      "checkpoint_level": 1,
+      "wall_seconds": 5.12,
+      "started_at": "2026-09-22T22:05:07",
+      "ended_at": "2026-09-22T22:05:12",
+      "output_dir": "/jet/home/rpearce/ocean/baseline/cpu-128-baseline-v2/run_008/out",
+      "products": {
+        "grf.hdf5": {
+          "sha256": "1dbf0826c4509e861077621b2b20cd61ce30811aff95e9dd3f5e0592a6e3add3",
+          "bytes": 16783816
+        },
+        "checkpoints.hdf5": {
+          "sha256": "4743b938afc62fba03014db0fd8e4f54b113e43d4fc7ba1ea4aa2af626085273",
+          "bytes": 219171288
+        },
+        "obs_grids.hdf5": {
+          "sha256": "77ce17d06d99e7cb868300aac0f8270e930efc4eb58425274d2b33647739dd08",
+          "bytes": 541176
+        },
+        "pk_arrays.hdf5": {
+          "sha256": "814448732d2b31c0571be2077423fb2e1b95095c93537c90774c8441fb9a54c0",
+          "bytes": 334328
+        }
+      },
+      "user_seconds": 585.91,
+      "system_seconds": 18.14,
+      "cpu_percent": 11804.0,
+      "time_wall_clock": "0:05.11",
+      "peak_rss_gb": 0.6,
+      "major_page_faults": 244,
+      "minor_page_faults": 23683,
+      "voluntary_context_switches": 958,
+      "involuntary_context_switches": 1939803,
+      "file_system_inputs": 8,
+      "file_system_outputs": 462696
+    },
+    {
+      "run": 9,
+      "returncode": 0,
+      "seed": 1487009665,
+      "seed_requested": 1487009665,
+      "save_grf": true,
+      "checkpoint_level": 1,
+      "wall_seconds": 7.04,
+      "started_at": "2026-09-22T22:05:13",
+      "ended_at": "2026-09-22T22:05:20",
+      "output_dir": "/jet/home/rpearce/ocean/baseline/cpu-128-baseline-v2/run_009/out",
+      "products": {
+        "grf.hdf5": {
+          "sha256": "cb243696ceb6e682fa8d4b1fc93ce8854248930c1ea2888dadc4eaf6377f3a86",
+          "bytes": 16783816
+        },
+        "checkpoints.hdf5": {
+          "sha256": "9d0790e8ed3c89c7bcccd6dd4de04dc6f0a080eec860a023f56ee3a98b9e5956",
+          "bytes": 219171288
+        },
+        "obs_grids.hdf5": {
+          "sha256": "f0190540b2f1bab6c2bbcc673ed1b1e070bcf834a7f7cd9eea3d459760e05af6",
+          "bytes": 541176
+        },
+        "pk_arrays.hdf5": {
+          "sha256": "589f374f91df59679b3e88b0de72b6d333c0de9ca0eecb74d6445692014bf087",
+          "bytes": 334328
+        }
+      },
+      "user_seconds": 846.48,
+      "system_seconds": 19.31,
+      "cpu_percent": 12308.0,
+      "time_wall_clock": "0:07.03",
+      "peak_rss_gb": 0.62,
+      "major_page_faults": 326,
+      "minor_page_faults": 27361,
+      "voluntary_context_switches": 1173,
+      "involuntary_context_switches": 1150103,
+      "file_system_inputs": 8,
+      "file_system_outputs": 462696
+    },
+    {
+      "run": 10,
+      "returncode": 0,
+      "seed": 272631278,
+      "seed_requested": 272631278,
+      "save_grf": true,
+      "checkpoint_level": 1,
+      "wall_seconds": 7.96,
+      "started_at": "2026-09-22T22:05:20",
+      "ended_at": "2026-09-22T22:05:28",
+      "output_dir": "/jet/home/rpearce/ocean/baseline/cpu-128-baseline-v2/run_010/out",
+      "products": {
+        "grf.hdf5": {
+          "sha256": "c2f46406fbaab426318c398cbdce6b754ed6589e211da6bff85c738cd995abf5",
+          "bytes": 16783816
+        },
+        "checkpoints.hdf5": {
+          "sha256": "f6560cf4fdc3c3b90d8367b9312f5fc322c65172e78034179f1090978df07006",
+          "bytes": 219171288
+        },
+        "obs_grids.hdf5": {
+          "sha256": "f7fb41e19c412d1e568c07692ae22cb09fb3c0f2e466d1fb92076ca048bcbb0b",
+          "bytes": 541176
+        },
+        "pk_arrays.hdf5": {
+          "sha256": "246a374876eb324d33865957487c9839143282434a7a4cddceddd42376373763",
+          "bytes": 334328
+        }
+      },
+      "user_seconds": 946.81,
+      "system_seconds": 19.85,
+      "cpu_percent": 12154.0,
+      "time_wall_clock": "0:07.95",
+      "peak_rss_gb": 0.61,
+      "major_page_faults": 241,
+      "minor_page_faults": 22482,
+      "voluntary_context_switches": 994,
+      "involuntary_context_switches": 2022685,
+      "file_system_inputs": 8,
+      "file_system_outputs": 462696
+    }
+  ]
+}
