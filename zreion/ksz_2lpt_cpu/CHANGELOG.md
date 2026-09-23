@@ -407,24 +407,3 @@ Build flags: `NGRID`, `NDM` (`fc3ed9b`) and `NCPU` (`282fd20`). Any change requi
 
 The middle row is not exact because `set_domain` assigns domains inside a critical section, so the
 order in which threads add into boundary cells varies from run to run.
-
-## Known issues not addressed by these commits
-
-| Issue | Where | Notes |
-|---|---|---|
-| `fft_3d_s` builds a `DFTI_DOUBLE` descriptor for a `real(4)` array | `fft_tools.f90:96`, `:116` | Unused today; a trap if the port moves to single precision. Upstream candidate |
-| `status` returned by every DFTI call is ignored | `fft_tools.f90` | A failed commit or compute would pass silently |
-| `set_domain` spins while holding a critical section | `domain_tools.f90:136` | Mitigated by `71448ca`, not fixed; the GPU port drops this scheme |
-| `end_domain` updates the shared status array outside the critical section | `domain_tools.f90:167` | In theory the last two finishers could miss each other's update and skip the reset before the next pass; never observed |
-| FFT descriptors are rebuilt on every call | `fft_tools.f90` | Optimization opportunity; unmeasured |
-| `dir_grf` is unused | `global.f90` | Left over from the removed binary reader |
-| `use_bt = .false.` because `data/bt_bias.txt` is missing | `global.f90`, `a0e5aad` | Changes `gal_map`; restore the file to re-enable |
-
-## Verification status
-
-- **Not compiled yet.** None of `7a41974` … `b8126cf` has been built; the fork needs Intel `ifort` and MKL, which are available only on Bridges-2. Build each commit in turn with:
-  ```bash
-  git rebase --exec "make clean && make NGRID=128 NDM=128 ksz_2lpt.x" fc3ed9b
-  ```
-- **Smoke test pending.** See Phase 0 in `docs/cpu_baseline_campaign.md`. In `checkpoints.hdf5` at N=128, the `_k` datasets should be `(128, 128, 130)` and the other fields `(128, 128, 128)`.
-- **Upstream candidates:** `7a41974` and `428f868`, cherry-picked onto branches based on `upstream/main`. Offer `71448ca` only as a suggestion.
