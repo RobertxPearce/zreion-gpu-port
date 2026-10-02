@@ -7,7 +7,7 @@ The port is written in CUDA Fortran. The CPU reference is a fork of the `ksz_2lp
 ## Layout
 
 ```text
-src/         the GPU port (not started)
+src/         the GPU port
 tools/       compare_runs: CPU/GPU output comparison
 tests/       ctest tests
 reference/   the CPU reference (submodule) and notes on it
