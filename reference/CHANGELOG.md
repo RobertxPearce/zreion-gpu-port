@@ -1,6 +1,6 @@
 # Changelog: ksz_2lpt CPU reference fork
 
-Every change made to the CPU reference in `src/` relative to Paul La Plante's upstream code, one
+Every change made to the CPU reference in `ksz_2lpt/` (the submodule) relative to Paul La Plante's upstream code, one
 entry per commit, oldest first. Each entry records **what** changed, **why**, and **what it does
 to the outputs**, so a result set can be traced to exactly the code that produced it.
 
@@ -9,9 +9,9 @@ to the outputs**, so a result set can be traced to exactly the code that produce
 | Fork | [RobertxPearce/ksz_2lpt](https://github.com/RobertxPearce/ksz_2lpt) (private) |
 | Upstream | [plaplant/ksz_2lpt](https://github.com/plaplant/ksz_2lpt) (private) |
 | Upstream base | `218f45e` Merge branch 'main' of github.com:plaplant/ksz_2lpt (2025-10-22) |
-| Branches | `main` → `a0e5aad`; `feat/selectable-grid-size` → `fc3ed9b`; `feat/baseline-instrumentation` → `b8126cf` |
+| Branches | `main` → `b8126cf`, the v2 reference. The feature branches below were fast-forwarded into `main` and no longer exist |
 
-The history is linear: each branch contains the one before it.
+The history is linear. The right-hand column shows the branch each commit was developed on.
 
 ```
 218f45e  upstream
@@ -66,7 +66,7 @@ Configuration for running on one Bridges-2 RM node under this account.
 **Effect on results.** This is the one commit that changes physics.
 - `use_bt = .false.` changes the galaxy bias model, so **`gal_map` differs** from upstream's default. `ksz_map`, `tau_map` and `t21_map` do not depend on it.
 - The thread count changes the domain decomposition and the order of floating-point sums. Results differ at round-off, not in substance.
-- The v1 baseline (`results/cpu-1024-baseline-v1/`) was run at this configuration.
+- The v1 baseline (`results/archive/cpu-1024-baseline-v1/`) was run at this configuration.
 
 ---
 
@@ -319,7 +319,7 @@ make clean && make NGRID=512 NDM=512 NCPU=16 ksz_2lpt.x
 **Why**
 - The port is validated one routine at a time: load a routine's input from the file, run the GPU version, and compare with the saved output. That needs the CPU's full arrays at routine boundaries, from a run whose initial field is known.
 - Design choices:
-  - **Raw arrays, no statistics.** min/max/mean/std/L2/NaN counts are computed only in `scripts/validation/metrics.py`, so the CPU and GPU are never compared through two definitions of "the mean".
+  - **Raw arrays, no statistics.** error metrics and NaN counts are computed only by the comparison tool (`compare_runs.x` in the GPU port), so the CPU and GPU are never compared through two definitions of "the mean".
   - **First call only.** `calc_density_velocity_fields` runs 22 times per simulation: once in `calc_zreion` at `z = zmean_zre`, then 21 more times at other redshifts. Saving only the first, scientifically central call is the difference between about 14 GB and about 300 GB per run at N=512.
   - **No `dm` particle array.** It is an array of structs, so it would need an HDF5 compound type. Its contents follow from `gradphi` and `delta2`, which are saved, and its effect shows in `density` and `velocity`, which are also saved.
   - **The random field lives only in `grf.hdf5`.** Saving it again in the checkpoint file would duplicate 8 GiB at N=1024.
@@ -357,11 +357,7 @@ make clean && make NGRID=512 NDM=512 NCPU=16 ksz_2lpt.x
   - A GPU error confined to that plane would go undetected.
 - The rename marks `delta2_k` as Fourier-space. Before, it sat beside real-space fields with nothing to show its interleaved layout.
 
-**Layout.** From Python, the `_k` datasets have shape `(N, N, N+2)`, with real and imaginary parts interleaved along the last axis for `kx = 0 … N/2`:
-```python
-a = f["calc_delta_field/delta1_k"][...]
-delta1_k = a[..., 0::2] + 1j * a[..., 1::2]   # shape (N, N, N/2+1)
-```
+**Layout.** The `_k` datasets have Fortran shape `(N+2, N, N)` (`h5ls` shows `{N, N, N+2}`, in C order), with real and imaginary parts interleaved along the first Fortran dimension: `a(2m+1, j, k)` and `a(2m+2, j, k)` hold mode `kx = m`, for `m = 0 … N/2`.
 
 **Effect on results:** none on the simulation. Checkpoint files grow by two columns on these two arrays.
 
@@ -401,8 +397,8 @@ Build flags: `NGRID`, `NDM` (`fc3ed9b`) and `NCPU` (`282fd20`). Any change requi
 
 | What | Repeatable to |
 |---|---|
-| `grf.hdf5` at a fixed `iseed` | bit for bit |
-| Products from a fixed `iseed` or a replayed `grf.hdf5` | round-off, relative L2 about `1e-12` |
+| `grf.hdf5` data at a fixed `iseed` | bit for bit (the files' hashes differ; compare the dataset) |
+| Products from a fixed `iseed` or a replayed `grf.hdf5` | bitwise up to deposition; relative L2 about `1e-16` after it (measured at N=128) |
 | Products with `iseed = 0` | not at all: each run is an independent realization |
 
 The middle row is not exact because `set_domain` assigns domains inside a critical section, so the
