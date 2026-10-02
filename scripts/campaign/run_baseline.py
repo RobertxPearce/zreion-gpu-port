@@ -1,5 +1,5 @@
 # -----------------------------------------------------------------------------
-# Build and run the CPU reference (zreion/ksz_2lpt) on Bridges-2, and record
+# Build and run the CPU reference (reference/ksz_2lpt) on Bridges-2, and record
 # everything the GPU port will need.
 #
 # Two modes:
@@ -18,7 +18,7 @@
 #
 # Writes, per case directory:
 #   results.json          every field below, structured
-#   summary.csv           one row per run, for the notebook
+#   summary.csv           one row per run
 #   provenance.txt        host, CPU, memory, OS, compiler, modules, libs, quota
 #   src.tar.gz            the exact source that produced the binary
 #   src.diff              uncommitted changes at build time, if any
@@ -46,10 +46,12 @@ import time
 
 RUN_VERSION = "v2"
 
-# Paths on the Bridges-2 supercomputer
-SIM_SRC = Path("/jet/home/rpearce/software/zreion-gpu-port/zreion/ksz_2lpt_cpu/src")
-EXEC = SIM_SRC / "ksz_2lpt.x"
+# The CPU reference is the reference/ksz_2lpt submodule of this repository;
+# on Bridges-2 the repository is /jet/home/rpearce/software/zreion-gpu-port.
 RUNNER_DIR = Path(__file__).resolve().parent
+REPO_ROOT = RUNNER_DIR.parents[1]
+SIM_SRC = REPO_ROOT / "reference" / "ksz_2lpt"
+EXEC = SIM_SRC / "ksz_2lpt.x"
 BASE_OUT = Path("~/ocean/baseline").expanduser()
 
 # zreion parameter values set at the midpoint of the bounds from reionemu
@@ -234,9 +236,9 @@ def reference_state(src=SIM_SRC):
     """
     Record which commit a source tree was at.
 
-    Called for the CPU fork, which the outer zreion-gpu-port repo ignores, so
-    nothing else ties a result set to the source that produced it; and for the
-    outer repo itself, so the result set also names the runner that drove it.
+    Called for the CPU fork, a submodule with its own history and dirty state,
+    so the result set records the commit actually built; and for the outer repo
+    itself, so the result set also names the runner that drove it.
     Read from the Bridges-2 trees, not from a laptop checkout -- the two drift,
     and the wrong SHA is worse than none.
 

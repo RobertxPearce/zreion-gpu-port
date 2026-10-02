@@ -43,11 +43,14 @@ export KMP_STACKSIZE=256m
 export OMP_PLACES=cores
 export OMP_PROC_BIND=close
 
-SIM_DIR="/jet/home/rpearce/software/zreion-gpu-port/zreion/ksz_2lpt_cpu/src"
 # sbatch runs a spooled copy of this file, so BASH_SOURCE points into the slurmd
 # spool directory, not the repo. Resolve from the submit directory instead, which
-# means submitting from slurm_scripts/bridges2/.
-SCRIPT_DIR="$(cd "${SLURM_SUBMIT_DIR:-$(dirname "${BASH_SOURCE[0]}")}/../.." && pwd)"
+# means submitting from scripts/slurm/bridges2/. The runner is in
+# scripts/campaign/ and the CPU reference is the reference/ksz_2lpt submodule.
+SUBMIT_DIR="${SLURM_SUBMIT_DIR:-$(dirname "${BASH_SOURCE[0]}")}"
+SCRIPT_DIR="$(cd "$SUBMIT_DIR/../../campaign" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+SIM_DIR="$REPO_ROOT/reference/ksz_2lpt"
 BASELINE_DIR="$HOME/ocean/baseline"
 MAMBA="/jet/home/rpearce/miniforge3/bin/mamba"
 
@@ -56,7 +59,7 @@ MAMBA="/jet/home/rpearce/miniforge3/bin/mamba"
 RUN_VERSION="v2"
 
 if [ ! -f "$SCRIPT_DIR/run_baseline.py" ]; then
-    echo "run_baseline.py not found in $SCRIPT_DIR; sbatch from slurm_scripts/bridges2/" >&2
+    echo "run_baseline.py not found in $SCRIPT_DIR; sbatch from scripts/slurm/bridges2/" >&2
     exit 1
 fi
 
